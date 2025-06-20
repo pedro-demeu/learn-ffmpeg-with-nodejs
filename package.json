@@ -1,10 +1,11 @@
 {
-  "name": "node-server-boilerplate",
+  "name": "learn-ffmpeg-with-nodejs",
   "version": "1.0.0",
-  "description": "Simple Node.js + Express boilerplate project.",
-  "main": "index.js",
+  "description": "API para aprender FFMPEG com Node.js",
+  "main": "src/app.js",
   "scripts": {
-    "dev": "nodemon index.js"
+    "start": "node src/app.js",
+    "dev": "nodemon src/app.js"
   },
   "dependencies": {
     "cors": "^2.8.5",

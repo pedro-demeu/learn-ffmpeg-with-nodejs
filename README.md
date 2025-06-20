@@ -34,6 +34,22 @@ For development mode:
 npm run dev || yarn dev
 ```
 
+### Running Tests
+To run the tests:
+```
+npm test
+```
+
+To run tests with coverage:
+```
+npm run test:coverage
+```
+
+To run tests in watch mode:
+```
+npm run test:watch
+```
+
 Listening in port 3000!
 Happy coding 💻
 

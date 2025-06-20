@@ -5,7 +5,10 @@
   "main": "src/app.js",
   "scripts": {
     "start": "node src/app.js",
-    "dev": "nodemon src/app.js"
+    "dev": "nodemon src/app.js",
+    "test": "jest --testEnvironment=node --testPathIgnorePatterns=src/__tests__/mocks/",
+    "test:watch": "jest --watch --testEnvironment=node --testPathIgnorePatterns=src/__tests__/mocks/",
+    "test:coverage": "jest --coverage --testEnvironment=node --testPathIgnorePatterns=src/__tests__/mocks/"
   },
   "dependencies": {
     "cors": "^2.8.5",
@@ -16,6 +19,22 @@
   "author": "Pedro Demeu",
   "license": "ISC",
   "devDependencies": {
+    "jest": "^29.7.0",
+    "jest-mock-extended": "^4.0.0",
     "nodemon": "^2.0.4"
+  },
+  "jest": {
+    "testEnvironment": "node",
+    "coveragePathIgnorePatterns": [
+      "/node_modules/"
+    ],
+    "testMatch": [
+      "**/__tests__/**/*.js",
+      "**/?(*.)+(spec|test).js"
+    ],
+    "testPathIgnorePatterns": [
+      "/node_modules/",
+      "/src/__tests__/mocks/"
+    ]
   }
 }

@@ -12,7 +12,7 @@ class FfmpegService {
    */
   convertToMp4() {
     return new Promise((resolve, reject) => {
-      ffmpeg(config.videoPath)
+      const command = ffmpeg(config.videoPath)
         .output("output.mp4")
         .on("end", function () {
           console.log("Conversão concluída!");
@@ -21,8 +21,9 @@ class FfmpegService {
         .on("error", function (err) {
           console.error("Erro durante a conversão:", err);
           reject(err);
-        })
-        .run();
+        });
+      
+      command.run();
     });
   }
 
@@ -88,7 +89,7 @@ class FfmpegService {
    */
   convertToHevc() {
     return new Promise((resolve, reject) => {
-      ffmpeg(config.videoPath)
+      const command = ffmpeg(config.videoPath)
         .videoCodec("libx265") // Codec H.265 (HEVC)
         .output(config.outputPath)
         .on("end", function () {
@@ -98,8 +99,9 @@ class FfmpegService {
         .on("error", function (err) {
           console.error("Erro durante a conversão:", err);
           reject(err);
-        })
-        .run();
+        });
+      
+      command.run();
     });
   }
 
@@ -108,7 +110,7 @@ class FfmpegService {
    */
   convertMp4ToM3u8() {
     return new Promise((resolve, reject) => {
-      ffmpeg(config.videoPath)
+      const command = ffmpeg(config.videoPath)
         .outputOptions([
           "-map 0:v:0", // Mapeia o primeiro vídeo do arquivo de entrada
           "-map 0:a:0", // Mapeia o primeiro áudio do arquivo de entrada
@@ -126,8 +128,9 @@ class FfmpegService {
         .on("error", function (err) {
           console.error("Erro durante a conversão para HLS:", err);
           reject(err);
-        })
-        .run();
+        });
+      
+      command.run();
     });
   }
 
@@ -143,7 +146,7 @@ class FfmpegService {
         fs.mkdirSync(outputDir, { recursive: true });
       }
       
-      ffmpeg(config.videoHevc)
+      const command = ffmpeg(config.videoHevc)
         .outputOptions([
           "-map 0:v:0", // Mapeia o primeiro vídeo do arquivo de entrada
           "-map 0:a:0", // Mapeia o primeiro áudio do arquivo de entrada
@@ -161,8 +164,9 @@ class FfmpegService {
         .on("error", function (err) {
           console.error("Erro durante a conversão para HLS:", err);
           reject(err);
-        })
-        .run();
+        });
+      
+      command.run();
     });
   }
 
@@ -180,7 +184,7 @@ class FfmpegService {
         fs.mkdirSync(outputDirectory, { recursive: true });
       }
 
-      ffmpeg(config.videoHevc)
+      const command = ffmpeg(config.videoHevc)
         .outputOptions([
           '-c:v flv', // Define o codec de vídeo como FLV
           '-c:a mp3', // Define o codec de áudio como MP3
@@ -193,8 +197,9 @@ class FfmpegService {
         .on('error', function(err) {
           console.error('Erro durante a conversão para FLV:', err);
           reject(err);
-        })
-        .run();
+        });
+      
+      command.run();
     });
   }
 

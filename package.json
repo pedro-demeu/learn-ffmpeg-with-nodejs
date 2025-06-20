@@ -1,10 +1,14 @@
 {
-  "name": "node-server-boilerplate",
+  "name": "learn-ffmpeg-with-nodejs",
   "version": "1.0.0",
-  "description": "Simple Node.js + Express boilerplate project.",
-  "main": "index.js",
+  "description": "API para aprender FFMPEG com Node.js",
+  "main": "src/app.js",
   "scripts": {
-    "dev": "nodemon index.js"
+    "start": "node src/app.js",
+    "dev": "nodemon src/app.js",
+    "test": "jest --testEnvironment=node --testPathIgnorePatterns=src/__tests__/mocks/",
+    "test:watch": "jest --watch --testEnvironment=node --testPathIgnorePatterns=src/__tests__/mocks/",
+    "test:coverage": "jest --coverage --testEnvironment=node --testPathIgnorePatterns=src/__tests__/mocks/"
   },
   "dependencies": {
     "cors": "^2.8.5",
@@ -15,6 +19,22 @@
   "author": "Pedro Demeu",
   "license": "ISC",
   "devDependencies": {
+    "jest": "^29.7.0",
+    "jest-mock-extended": "^4.0.0",
     "nodemon": "^2.0.4"
+  },
+  "jest": {
+    "testEnvironment": "node",
+    "coveragePathIgnorePatterns": [
+      "/node_modules/"
+    ],
+    "testMatch": [
+      "**/__tests__/**/*.js",
+      "**/?(*.)+(spec|test).js"
+    ],
+    "testPathIgnorePatterns": [
+      "/node_modules/",
+      "/src/__tests__/mocks/"
+    ]
   }
 }
